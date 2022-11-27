@@ -1,12 +1,13 @@
 import React from 'react';
 import LightDarkBtn from './LightDarkBtn';
-import Tab from './Tab';
+import Tabs from './Tabs';
+import styles from './Header.module.css'
 
 export const Header = (props) => {
     return (
-        <div>
+        <div className={styles.header}>
             <LightDarkBtn />
-            <Tab />
+            <Tabs />
         </div>
     )
 };
