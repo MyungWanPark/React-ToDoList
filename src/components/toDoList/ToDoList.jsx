@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import InputToDo from './InputToDo/InputToDo';
 
 export default function ToDoList() {
     const [ toDos, setToDos ] = useState([
@@ -12,18 +13,24 @@ export default function ToDoList() {
             text: '주차하기',
             status: 'active',
         },
-    ])
-
+    ]);
+    
+    const handleAdd = (text) => {
+      setToDos([...toDos, text])
+    }
     return (
+      <div>
         <section>
-            <ul>
-                {
-                    toDos.map(toDo => { 
-                        return (<li key={toDo.id}>{toDo.text}</li>);
-                    })
-                }
-            </ul>
+          <ul>   
+            {
+              toDos.map(toDo => { 
+                return (<li key={toDo.id}>{toDo.text}</li>);
+              })
+            }
+          </ul>
         </section>
+        <InputToDo onAdd={handleAdd}/>
+      </div>
     );
 }
 
