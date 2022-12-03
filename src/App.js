@@ -1,14 +1,9 @@
-import { Header } from './components/toDoList/header/Header';
-import Main from './components/toDoList/main/Main';
-import styles from './App.module.css'
+import ToDoList from './components/toDoList/ToDoList';
 
 function App() {
   return (
-    <div className={styles.background}>
-      <div className={styles.toDoList}>
-        <Header />
-        <Main />
-      </div>
+    <div>
+      < ToDoList />
     </div>
   );
 }
