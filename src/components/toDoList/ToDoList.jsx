@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import InputToDo from './InputToDo/InputToDo';
 import ListItem from './ToDoListItem/ListItem';
 
-export default function ToDoList() {
+export default function ToDoList({currentFilter}) {
     const [ toDos, setToDos ] = useState([
         {
             id: 123,
@@ -25,13 +25,14 @@ export default function ToDoList() {
     const handleDelete = (deletedItem) => {
       setToDos(toDos.filter(toDo => toDo !== deletedItem));
     }
-
+    
+    const filteredItem = getFilteredItem(currentFilter, toDos);
     return (
       <div>
         <section>
           <ul>   
             {
-              toDos.map(toDo => { 
+              filteredItem.map(toDo => { 
                 return <ListItem key={toDo.id} toDo={toDo} onUpdate={handleUpdate} onDelete={handleDelete}/>
               })
             }
@@ -42,3 +43,9 @@ export default function ToDoList() {
     );
 }
 
+const getFilteredItem = (filterType, toDos) => {
+  if (filterType === 'all') {
+    return toDos;
+  } 
+  return toDos.filter(value => value.status === filterType);
+}
