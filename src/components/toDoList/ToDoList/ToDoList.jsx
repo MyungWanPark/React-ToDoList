@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import InputToDo from './InputToDo/InputToDo';
-import ListItem from './ToDoListItem/ListItem';
+import InputToDo from '../InputToDo/InputToDo';
+import ListItem from '../ToDoListItem/ListItem';
+import styles from './ToDoList.module.css'
 
 export default function ToDoList({currentFilter}) {
     const [ toDos, setToDos ] = useState([
@@ -28,18 +29,17 @@ export default function ToDoList({currentFilter}) {
     
     const filteredItem = getFilteredItem(currentFilter, toDos);
     return (
-      <div>
-        <section>
-          <ul>   
+        <section className={styles.container}>
+          <ul className={styles.unorderList}>   
             {
               filteredItem.map(toDo => { 
                 return <ListItem key={toDo.id} toDo={toDo} onUpdate={handleUpdate} onDelete={handleDelete}/>
               })
             }
           </ul>
+          <InputToDo onAdd={handleAdd}/>
         </section>
-        <InputToDo onAdd={handleAdd}/>
-      </div>
+        
     );
 }
 
