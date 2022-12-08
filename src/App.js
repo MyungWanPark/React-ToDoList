@@ -8,10 +8,10 @@ function App() {
   const onFilterChange = (filter) => setCurrentFilter(filter);
 
   return (
-    <div>
+    <>
       <Header filterType={filterType} onFilterChange={onFilterChange} currentFilter={currentFilter}/>
       <ToDoList currentFilter={currentFilter}/>
-    </div>
+    </>
   );
 }
 
