@@ -1,21 +1,13 @@
 import React, { useState } from "react";
+import { useEffect } from "react";
 import InputToDo from "../InputToDo/InputToDo";
 import ListItem from "../ToDoListItem/ListItem";
 import styles from "./ToDoList.module.css";
 
 export default function ToDoList({ currentFilter }) {
-    const [toDos, setToDos] = useState([
-        {
-            id: 123,
-            text: "장보기",
-            status: "active",
-        },
-        {
-            id: 124,
-            text: "주차하기",
-            status: "active",
-        },
-    ]);
+    const [toDos, setToDos] = useState(() =>
+        readToDosFromLocalStorage(),
+    );
 
     const handleAdd = (text) => {
         setToDos([...toDos, text]);
@@ -30,6 +22,10 @@ export default function ToDoList({ currentFilter }) {
     const handleDelete = (deletedItem) => {
         setToDos(toDos.filter((toDo) => toDo !== deletedItem));
     };
+
+    useEffect(() => {
+        localStorage.setItem("todos", JSON.stringify(toDos));
+    }, [toDos]);
 
     const filteredItem = getFilteredItem(currentFilter, toDos);
     return (
@@ -57,3 +53,8 @@ const getFilteredItem = (filterType, toDos) => {
     }
     return toDos.filter((value) => value.status === filterType);
 };
+
+function readToDosFromLocalStorage() {
+    const todos = localStorage.getItem("todos");
+    return todos ? JSON.parse(todos) : [];
+}
