@@ -7,6 +7,12 @@
     --color-white: #ffffff;
 }
 
+html.darkmode {
+    --color-bg-dark: #1a1c35;
+    --color-bg: #22243b;
+    --color-grey: #424242;
+    --color-text: #fdfffd;
+}
 #root {
     box-sizing: border-box;
     display: flex;

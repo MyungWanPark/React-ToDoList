@@ -10,10 +10,14 @@ export default function Header({
     const { isDarkMode, toggleDarkMode } = useDarkMode();
     return (
         <header className={styles.header}>
-            <button onClick={toggleDarkMode}>
-                {isDarkMode && <HiSun />}
-                {!isDarkMode && <HiMoon />}
-            </button>
+            <div className={styles.buttonContainer}>
+                <button
+                    onClick={toggleDarkMode}
+                    className={styles.toggle}>
+                    {isDarkMode && <HiSun />}
+                    {!isDarkMode && <HiMoon />}
+                </button>
+            </div>
             <ul className={styles.filters}>
                 {filterType.map((value, id) => {
                     return (
