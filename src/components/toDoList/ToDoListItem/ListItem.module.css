@@ -11,6 +11,10 @@
     margin-left: 0.5rem;
 }
 
+.input {
+    accent-color: var(--color-accent);
+}
+
 .button {
     background-color: transparent;
     transition: all 200ms ease-in;
