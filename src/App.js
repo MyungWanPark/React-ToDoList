@@ -1,18 +1,25 @@
-import { useState } from 'react';
-import Header from './components/toDoList/Header/Header';
-import ToDoList from './components/toDoList/ToDoList/ToDoList';
+import { useState } from "react";
+import { DarkModeProvider } from "./components/toDoList/context/DarkModeContext";
+import Header from "./components/toDoList/Header/Header";
+import ToDoList from "./components/toDoList/ToDoList/ToDoList";
 
-const filterType = ['all', 'active', 'completed'];
+const filterType = ["all", "active", "completed"];
 function App() {
-  const [ currentFilter, setCurrentFilter ] = useState(filterType[0]);
-  const onFilterChange = (filter) => setCurrentFilter(filter);
+    const [currentFilter, setCurrentFilter] = useState(
+        filterType[0],
+    );
+    const onFilterChange = (filter) => setCurrentFilter(filter);
 
-  return (
-    <>
-      <Header filterType={filterType} onFilterChange={onFilterChange} currentFilter={currentFilter}/>
-      <ToDoList currentFilter={currentFilter}/>
-    </>
-  );
+    return (
+        <DarkModeProvider>
+            <Header
+                filterType={filterType}
+                onFilterChange={onFilterChange}
+                currentFilter={currentFilter}
+            />
+            <ToDoList currentFilter={currentFilter} />
+        </DarkModeProvider>
+    );
 }
 
 export default App;
